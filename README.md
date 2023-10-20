@@ -1,2 +1,2 @@
 # rock-paper-scissors
-a game built by javasscript
+a game built by javascript
