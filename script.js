@@ -36,7 +36,8 @@ if(playerSelection === computerSelection) {
 }
 }
 
-const playerSelection = prompt("play rock-paper-scissors ")
+const playerSelection = prompt("play rock-paper-scissors").toLowerCase()
 const computerSelection = getComputerChoice();
 
 console.log(playRound(playerSelection, computerSelection))
+
