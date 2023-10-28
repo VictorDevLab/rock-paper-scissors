@@ -1,13 +1,13 @@
 //DOM
 const buttons = document.querySelectorAll("input");
-let player = document.querySelector(".player")
-let computer = document.querySelector(".computer")
+const player = document.querySelector(".player")
+const computer = document.querySelector(".computer")
+const results = document.querySelector(".results")
+const playEl = document.querySelector(".playAgain")
 let computerScore = 0;
 let playerScore = 0
-
-//function called getComputerChoice that will
-//randomly return either ‘Rock’, ‘Paper’ or ‘Scissors’.
-
+let result = ""
+//a function to get a computer choice
 function getComputerChoice() {
   let randomNumber = Math.floor(Math.random() * 3);
   if (randomNumber === 0) {
@@ -19,44 +19,57 @@ function getComputerChoice() {
   }
 }
 
+computer.textContent = computerScore;
+player.textContent = playerScore;
 
 function playRound(playerSelection) {
   let computerSelection = getComputerChoice();
-
+    
   if (playerSelection === computerSelection) {
-    return "Its a tie";
+    results.textContent =  "Its a tie";
   } else if (playerSelection === "rock" && computerSelection === "paper") {
     computerScore++;
-    computer.textContent = "Computer Score " + computerScore;
-    return "You lose! Paper covers rocks";
+    computer.textContent = computerScore;
+    results.textContent =  "You lose! Paper covers rocks";
   } else if (playerSelection === "paper" && computerSelection === "rock") {
     playerScore++;
-    player.textContent = "Player Score " + playerScore;
-    return "You won! Paper covers rocks";
+    player.textContent = playerScore;
+    results.textContent =  "You won! Paper covers rocks";
   } else if (playerSelection === "scissors" && computerSelection === "paper") {
     playerScore++;
-    player.textContent = "Player Score " + playerScore;
-    return "You won! Scissors cuts paper";
+    player.textContent = playerScore;
+    results.textContent =  "You won! Scissors cuts paper";
   } else if (playerSelection === "rock" && computerSelection === "scissors") {
     playerScore++;
-    player.textContent = "Player Score " + playerScore;
-    return "You won! Rock crushes scissors";
+    player.textContent = playerScore;
+    results.textContent =  "You won! Rock crushes scissors";
   } else if (playerSelection === "scissors" && computerSelection === "rock") {
     computerScore++;
-    computer.textContent = "Computer Score " + computerScore;
-    return "You lose! Rock crushes scissors";
+    computer.textContent = computerScore;
+    results.textContent =  "You lose! Rock crushes scissors";
   } else if (playerSelection === "paper" && computerSelection === "scissors") {
     computerScore++;
-    computer.textContent = "Computer Score " + computerScore;
-    return "You lose! scissors cuts paper";
+    computer.textContent = computerScore;
+    results.textContent =  "You lose! scissors cuts paper";
   }
 }
 
 buttons.forEach(button => {
   button.addEventListener('click', function() {
-    console.log(playRound(button.value))
+    playRound(button.value)
   })
 })
+
+playEl.addEventListener('click', function() {
+ //buttons.disabled = true;
+ console.log("clicked")
+ computerScore = 0;
+ computer.textContent = computerScore;
+ playerScore = 0;
+ player.textContent = playerScore;
+ results.textContent = " "
+})
+
 
   
 
