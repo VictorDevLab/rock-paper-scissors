@@ -6,7 +6,7 @@ const results = document.querySelector(".results")
 const playEl = document.querySelector(".playAgain")
 let computerScore = 0;
 let playerScore = 0
-let result = ""
+
 //a function to get a computer choice
 function getComputerChoice() {
   let randomNumber = Math.floor(Math.random() * 3);
@@ -19,8 +19,22 @@ function getComputerChoice() {
   }
 }
 
+function disable() {
+  buttons.forEach(button => {
+    button.disabled = true;
+  })
+}
+
+function enable() {
+  buttons.forEach(button => {
+    button.disabled = false;
+  })
+}
+
 computer.textContent = computerScore;
 player.textContent = playerScore;
+
+
 
 function playRound(playerSelection) {
   let computerSelection = getComputerChoice();
@@ -52,6 +66,16 @@ function playRound(playerSelection) {
     computer.textContent = computerScore;
     results.textContent =  "You lose! scissors cuts paper";
   }
+//Final Game results
+  if (playerScore === 5 && computerScore < playerScore) {
+    results.classList.add("resultsWin")
+    disable()
+    results.textContent = "YOU WON THE GAME!"
+   } else if (computerScore === 5 && playerScore < computerScore) {
+    results.classList.add("resultsLose")
+    disable()
+    results.textContent = "YOU LOST THE GAME!"
+   } 
 }
 
 buttons.forEach(button => {
@@ -60,9 +84,11 @@ buttons.forEach(button => {
   })
 })
 
+
+
+
 playEl.addEventListener('click', function() {
- //buttons.disabled = true;
- console.log("clicked")
+ enable()
  computerScore = 0;
  computer.textContent = computerScore;
  playerScore = 0;
